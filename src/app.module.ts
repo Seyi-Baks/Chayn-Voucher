@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -12,9 +13,9 @@ dotenv.config();
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.DB_NAME,
-    synchronize: true,
+    synchronize: process.env.ENV !== 'production',
     autoLoadEntities: true
-  })],
+  }), AuthModule],
   controllers: [],
   providers: [],
 })
