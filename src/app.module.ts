@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
+import { AuthModule } from './auth/auth.module'; 
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
+  imports: [
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRoot({
     type: 'postgres',
     host: process.env.POSTGRES_HOST,
     port: Number.parseInt(process.env.POSTGRES_PORT),
@@ -15,7 +15,9 @@ dotenv.config();
     database: process.env.DB_NAME,
     synchronize: process.env.ENV !== 'production',
     autoLoadEntities: true
-  }), AuthModule],
+  }), 
+  AuthModule
+  ],
   controllers: [],
   providers: [],
 })
