@@ -1,6 +1,4 @@
 import { ConflictException } from "@nestjs/common";
-import { CreateOrganisationDto } from "src/organisation/dto/create-organisation.dto";
-import { Organisation } from "src/organisation/organisation.entity";
 import { EntityRepository, Repository } from "typeorm";
 import { RedemVoucherDto } from "./dto/redeem-voucher.dto";
 import { Voucher } from "./voucher.entity";
